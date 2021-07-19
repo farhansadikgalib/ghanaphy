@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:ghanaphy/Check_Connection/No%20Internet.dart';
 
-class HomePage extends StatefulWidget {
+class HomePageX extends StatefulWidget {
   final String url;
 
-  HomePage({Key? key, required this.url}) : super(key: key);
+  HomePageX({Key? key, required this.url}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomePageXState createState() => _HomePageXState();
 }
 
-class _HomePageState extends State<HomePage> {
-   int checkInt = 0;
+class _HomePageXState extends State<HomePageX> {
+  int checkInt = 0;
   late ConnectivityResult previous;
 
 

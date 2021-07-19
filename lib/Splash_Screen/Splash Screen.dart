@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:ghanaphy/Check_Connection/No%20Internet.dart';
 import 'package:ghanaphy/Check_Connection/check_internet.dart';
-import 'package:ghanaphy/Home_Page/HomePage.dart';
+import 'package:ghanaphy/Page_Controller/Pages_With_Bottom_Navbar.dart';
 
 
 class SplashScreenPage extends StatefulWidget {
@@ -47,8 +47,12 @@ class _SplashScreenPageState extends State<SplashScreenPage>
                 () =>
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => HomePage(
-                        url: 'https://ghanaphy.com/wp-login.php')),
+                    MaterialPageRoute(builder: (context) =>
+                    //     HomePage(
+                    //     url: 'https://ghanaphy.com/wp-login.php'
+                    // )
+                      Nav_bar()
+                    ),
                         (route) => false));
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text('Connected to the internet'),
@@ -61,42 +65,50 @@ class _SplashScreenPageState extends State<SplashScreenPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(109, 108, 98, 1),
+      backgroundColor: Color.fromRGBO(243, 215, 171, 1),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Center(
             child: Container(
-                height: 200,
-                width: 200,
+                height: 150,
+                width: 150,
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Image.asset(
-                    "assets/logoo.png",
+                    "assets/logo.png",
                   ),
                 )),
           ),
           SizedBox(
-            height: 75,
+            height: 20,
+          ),
+
+
+          Text("EXPERT WITH VISION",
+              style: TextStyle(fontSize: 20, fontFamily: "Poppins",color: Colors.lightGreen)),
+
+          SizedBox(
+            height: 50,
           ),
 
           SpinKitFadingCube(
-            color: Colors.white,
+            color: Colors.orangeAccent,
             size: 25.0,
             controller: AnimationController(
                 duration: const Duration(milliseconds: 1300), vsync: this),
           ),
 
 
-          // Text("loading",
-          //     style: TextStyle(fontSize: 14, fontFamily: "Poppins",color: Colors.yellow[800])),
-          SizedBox(
-            height: 10,
-          ),
           // _AnimatedLiquidLinearProgressIndicator(),
         ],
       ),
     );
   }
 }
+
+
+///https://ghanaphy.com/my-account/private-messages/
+///https://ghanaphy.com/my-account/all-notifications/
+///https://ghanaphy.com/my-account/shopping/

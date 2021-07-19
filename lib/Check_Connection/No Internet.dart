@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:ghanaphy/Home_Page/HomePage.dart';
+import 'package:ghanaphy/Page_Controller/Pages_With_Bottom_Navbar.dart';
 import 'check_internet.dart';
 
 class No_Internet_Connection extends StatefulWidget {
@@ -95,13 +95,12 @@ class _No_Internet_ConnectionState extends State<No_Internet_Connection> {
                             padding: MaterialStateProperty.all<EdgeInsets>(
                                 EdgeInsets.all(15)),
                             foregroundColor: MaterialStateProperty.all<Color>(
-                                Color.fromRGBO(109, 108, 98, 1)),
+                                Colors.lightGreen),
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(18.0),
-                                    side: BorderSide(color: Color.fromRGBO(
-                                        178, 140, 99, 1))
+                                    side: BorderSide(color: Color.fromRGBO(243, 215, 140, 1))
                                 )
                             )
                         ), onPressed: () {
@@ -123,8 +122,11 @@ class _No_Internet_ConnectionState extends State<No_Internet_Connection> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(builder: (context) =>
-                                  HomePage(
-                                      url: 'https://ghanaphy.com/wp-login.php/')),
+                                  // HomePage(
+                                  //     url: 'https://ghanaphy.com/wp-login.php/'
+                                  // )
+                              Nav_bar()
+                              ),
                                   (route) => false);
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content: Text('Connected to the internet'),
