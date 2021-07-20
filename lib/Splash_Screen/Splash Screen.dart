@@ -65,8 +65,15 @@ class _SplashScreenPageState extends State<SplashScreenPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(243, 215, 171, 1),
-      body: Column(
+      // backgroundColor: Color.fromRGBO(243, 215, 171, 1),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/bg.png"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child:Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
@@ -77,7 +84,7 @@ class _SplashScreenPageState extends State<SplashScreenPage>
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Image.asset(
-                    "assets/logo.png",
+                    "assets/s_logo.png",
                   ),
                 )),
           ),
@@ -87,7 +94,7 @@ class _SplashScreenPageState extends State<SplashScreenPage>
 
 
           Text("EXPERT WITH VISION",
-              style: TextStyle(fontSize: 20, fontFamily: "Poppins",color: Colors.lightGreen)),
+              style: TextStyle(fontSize: 20, fontFamily: "Poppins",color: Colors.green[800])),
 
           SizedBox(
             height: 50,
@@ -100,9 +107,12 @@ class _SplashScreenPageState extends State<SplashScreenPage>
                 duration: const Duration(milliseconds: 1300), vsync: this),
           ),
 
-
+          SizedBox(
+            height: 50,
+          ),
           // _AnimatedLiquidLinearProgressIndicator(),
         ],
+      ),
       ),
     );
   }

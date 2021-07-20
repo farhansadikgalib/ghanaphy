@@ -1,6 +1,10 @@
+import 'dart:io';
+
+import 'package:connectivity/connectivity.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:ghanaphy/Check_Connection/No%20Internet.dart';
 import 'package:ghanaphy/Home_Page/HomePage.dart';
 import 'package:ghanaphy/Home_Page/HomePage2.dart';
 import 'package:ghanaphy/Home_Page/HomePage3.dart';
@@ -18,7 +22,8 @@ class Nav_bar extends StatefulWidget {
 
 class _Nav_barState extends State<Nav_bar> {
 
-
+  int checkInt = 0;
+  late ConnectivityResult previous;
   InAppWebViewController? _webViewController;
 
   double progress = 0;
@@ -67,6 +72,41 @@ class _Nav_barState extends State<Nav_bar> {
 
 
 
+  @override
+  void initState() {
+    super.initState();
+
+    pullToRefreshController = PullToRefreshController(
+      options: PullToRefreshOptions(color: Colors.yellow[800]),
+      onRefresh: () async {
+        if (Platform.isAndroid) {
+          _webViewController?.reload();
+        } else if (Platform.isIOS) {
+          _webViewController?.loadUrl(
+              urlRequest: URLRequest(url: await _webViewController?.getUrl()));
+        }
+      },
+    );
+
+
+    Connectivity().onConnectivityChanged.listen((
+        ConnectivityResult connresult) {
+      if (connresult == ConnectivityResult.none) {
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => No_Internet_Connection()), (
+            route) => false);
+      } else if (previous == ConnectivityResult.none) {
+        // internet conn
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => No_Internet_Connection()), (
+            route) => false);
+      }
+
+      previous = connresult;
+    });
+  }
 
 
   Future<bool> _onWillPop() async {
